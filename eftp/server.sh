@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CLIENT="172.31.98.73"
+CLIENT="ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1"
 echo "Servidor de EFTP"
 
 echo "(0) Listen"
