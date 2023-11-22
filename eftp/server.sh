@@ -1,11 +1,21 @@
 #!/bin/bash
 
-CLIENT="ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1"
+CLIENT="ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1 "
 echo "Servidor de EFTP"
 
-echo "(0) Listen"
-DATA=`nc -l -p 3333 -w 0`
+echo "(1) Listen"
+DATA=$(nc -l -p 3333 -w 0)
 echo $DATA
+
+HEADER=$(echo $DATA | cut -d' ' -f1-2)
+IP_CLIENTE=$(echo $DATA | cut -d' ' -f3)
+
+if [ "$HEADER" != "EFTP 1.0" ]; then
+    echo "ERROR 1: BAD HEADER"
+    sleep 1
+    echo "KO_HEADER" | nc $IP_CLIENTE 3333
+    exit 1
+fi
 
 echo "(3) Test & Send"
 

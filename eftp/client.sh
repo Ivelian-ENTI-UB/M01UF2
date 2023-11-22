@@ -3,8 +3,10 @@
 SERVER="localhost"
 echo "Cliente de EFTP"
 
+IP_CLIENTE=$(hostname -I | cut -d' ' -f1)
+
 echo "(1) Send"
-echo "EFTP 1.0" | nc $SERVER 3333
+echo "EFTP 1.0 $IP_CLIENTE" | nc $SERVER 3333
 
 echo "(2) Listen"
 
