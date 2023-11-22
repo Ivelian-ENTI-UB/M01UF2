@@ -1,38 +1,40 @@
 #!/bin/bash
 
+# IP del servidor (localhost en este caso)
 SERVER="localhost"
+
 echo "Cliente de EFTP"
 
-<<<<<<< HEAD
-IP_CLIENTE=$(ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1)
-=======
-IP_CLIENTE=$(hostname -I | cut -d' ' -f1)
->>>>>>> 1677d8a216044128dfff1d6f734fcf4c44f1b73e
+# Obtención de la dirección IP del cliente
+IP_CLIENTE=$(ip address | grep inet | grep enp0s3 | cut -d ' ' -f10 | cut -d '/' -f1)
 
 echo "(1) Send"
+# Enviar la cabecera y la IP del cliente al servidor
 echo "EFTP 1.0 $IP_CLIENTE" | nc $SERVER 3333
 
 echo "(2) Listen"
-
-DATA=`nc -l -p 3333 -w -0`
+# Esperar respuesta del servidor
+DATA=$(nc -l -p 3333 -w 0)
 
 echo $DATA
 
-echo "(5) Test $ Send"
+echo "(5) Test & Send"
 
+# Verificar la respuesta del servidor
 if [ "$DATA" != "OK_HEADER" ]
 then
-	echo "ERROR 1: BAD HEADER"
-	exit 1
-
+    echo "ERROR 1: BAD HEADER"
+    exit 1
 fi
 
+# Enviar confirmación al servidor
 echo "BOOOM"
 sleep 1
 echo "BOOOM" | nc $SERVER 3333
 
 echo "(6) Listen"
-
-DATA=`nc -l -p 3333 -w 0`
+# Esperar la respuesta final del servidor
+DATA=$(nc -l -p 3333 -w 0)
 
 echo $DATA
+
