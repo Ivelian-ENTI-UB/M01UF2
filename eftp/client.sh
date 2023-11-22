@@ -3,7 +3,7 @@
 SERVER="localhost"
 echo "Cliente de EFTP"
 
-IP_CLIENTE=$(ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1 )
+IP_CLIENTE=$(hostname -I | cut -d' ' -f1)
 
 echo "(1) Send"
 echo "EFTP 1.0 $IP_CLIENTE" | nc $SERVER 3333
