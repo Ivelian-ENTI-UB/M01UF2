@@ -10,21 +10,14 @@ echo $DATA
 HEADER=$(echo $DATA | cut -d' ' -f1-2)
 IP_CLIENTE=$(echo $DATA | cut -d' ' -f3)
 
+echo "(3) Test & Send"
+
 if [ "$HEADER" != "EFTP 1.0" ]; then
     echo "ERROR 1: BAD HEADER"
     sleep 1
+    # Usar la IP del cliente extraída para enviar el mensaje de error
     echo "KO_HEADER" | nc $IP_CLIENTE 3333
     exit 1
-fi
-
-echo "(3) Test & Send"
-
-if [ "$DATA" != "EFTP 1.0" ]
-then
-	echo "ERROR 1: BAD HEADER"
-	sleep 1
-	echo "KO_HEADER" | nc $CLIENT 3333
-	exit 1
 fi
 
 echo "OK_HEADER"
