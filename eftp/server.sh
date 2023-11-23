@@ -2,9 +2,11 @@
 
 CLIENT="172.31.98.73"
 echo "Servidor de EFTP"
+
 echo "(0) Listen"
 DATA=`nc -l -p 3333 -w 0`
 echo $DATA
+
 echo "(3) Test & Send"
 if [ "$DATA" != "EFTP 1.0" ]
 then
@@ -16,9 +18,11 @@ fi
 echo "OK_HEADER"
 sleep 1
 echo "OK_HEADER" | nc $CLIENT 3333
+
 echo "(4) Listen"
 DATA=`nc -l -p 3333 -w 0`
 echo $DATA
+
 echo "(7) Test & Send"
 if [ "$DATA" != "BOOOM" ]
 then echo "ERROR 2: BAD HANDSHAKE"
@@ -29,5 +33,6 @@ fi
 echo "OK_HANDSHAKE"
 sleep 1
 echo "OK_HANDSHAKE" | nc $CLIENT 3333
+
 echo "(8) Listen"
 DATA=`nc -l -p 3333 -w 0`
