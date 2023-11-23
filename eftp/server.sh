@@ -1,10 +1,6 @@
 #!/bin/bash
 
-<<<<<<< HEAD
-CLIENT=$(ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1)
-=======
-CLIENT=ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1 
->>>>>>> 05790c1efa5b0fdaf06841659c71c087fc900562
+CLIENT=ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1  
 echo "Servidor de EFTP"
 
 # (0) Listen
