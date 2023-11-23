@@ -1,4 +1,5 @@
 #!/bin/bash
+
 CLIENT="172.31.98.73"
 echo "Servidor de EFTP"
 echo "(0) Listen"

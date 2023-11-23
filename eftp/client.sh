@@ -1,4 +1,5 @@
 #!/bin/bash
+
 SERVER="localhost"
 echo "Cliente de EFTP"
 echo "(1) Send"
