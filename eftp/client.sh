@@ -1,10 +1,12 @@
 #!/bin/bash
 
-SERVER="localhost"  # Replace with the actual server address if necessary
+SERVER="localhost"
 echo "Cliente de EFTP"
 
-echo "(1) Send"
-echo "EFTP 1.0" | nc $SERVER 3333
+IP=$(ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1)
+HEADER="EFTP 1.0 $IP"
+
+echo $HEADER | nc $SERVER 3333
 
 echo "(2) Listen"
 DATA=$(nc -l -p 3333 -w 0)
@@ -16,7 +18,7 @@ if [ "$DATA" != "OK_HEADER" ]; then
     exit 1
 fi
 
-echo "BOOOM" | nc $SERVER 3333
+echo "BOOOM!" | nc $SERVER 3333
 
 echo "(6) Listen"
 DATA=$(nc -l -p 3333 -w 0)
