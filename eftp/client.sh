@@ -1,10 +1,12 @@
 #!/bin/bash
 
+IP=$(ip address | grep inet | grep enp0s3 | cut -d ' ' -f6 | cut -d '/' -f1)
+
 SERVER="localhost"
 echo "Cliente de EFTP"
 
 echo "(1) Send"
-echo "EFTP 1.0" | nc $SERVER 3333
+echo "EFTP 1.0 $IP"  | nc $SERVER 3333
 
 echo "(2) Listen"
 DATA=`nc -l -p 3333 -w -0`
