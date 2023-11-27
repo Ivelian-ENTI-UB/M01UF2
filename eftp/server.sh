@@ -62,7 +62,7 @@ fi
 
 FILE_NAME=`echo $DATA | cut -d " " -f 2` 
 
-
+echo "OK_FILE_NAME" | nc $CLIENT 3333
 
 echo "(13) Listen"
 
