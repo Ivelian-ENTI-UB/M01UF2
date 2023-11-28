@@ -48,6 +48,8 @@ echo "(8) Listen"
 
 DATA=`nc -l -p 3333 -w $TIMEOUT`
 
+echo $DATA
+
 echo "(12) Test&Store&Send"
 
 PREFIX=`echo $DATA | cut -d " " -f 1`
@@ -61,6 +63,17 @@ then
 fi
 
 FILE_NAME=`echo $DATA | cut -d " " -f 2` 
+FILE_MD5=`echo $DATA | cut -d " " -f 3`
+
+FILE_MD5_LOCAL=`echo $FILE_NAME | md5sum |cut -d " " -f 1`
+
+if [ "$FILE_MD5" != "$FILE_MD5_LOCAL" ]
+then 
+	echo "ERROR 3: BAD FILE NAME MD5"
+	sleep 1
+	echo "KO_FILE_NAME" | nc $CLIENT 3333
+	exit 3
+fi
 
 echo "OK_FILE_NAME" | nc $CLIENT 3333
 
