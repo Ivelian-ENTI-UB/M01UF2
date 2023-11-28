@@ -79,11 +79,11 @@ echo "OK_FILE_NAME" | nc $CLIENT 3333
 
 echo "(13) Listen"
 
-nc -l -p 3333 -w $TIMEOUT > inbox/$FILE_NAME
+WCFN=`nc -l -p 3333 -w $TIMEOUT > inbox/$FILE_NAME`
 
 echo "(16) Store & Send"
 
-if [ "$DATA" == "" ]
+if [ "$WCFN" == "cat inbox/$FILE_NAME | wc -w" ]
 then
 	echo "ERROR 4: EMPTY DATA"
 	sleep 1
