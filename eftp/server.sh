@@ -79,7 +79,7 @@ echo "OK_FILE_NAME" | nc $CLIENT 3333
 
 echo "(13) Listen"
 
-DATA=`nc -l -p 3333 -w $TIMEOUT`
+nc -l -p 3333 -w $TIMEOUT > inbox/$FILE_NAME
 
 echo "(16) Store & Send"
 
