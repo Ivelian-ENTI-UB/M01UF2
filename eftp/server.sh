@@ -95,4 +95,13 @@ fi
 sleep 1
 echo "OK_DATA" | nc $CLIENT 3333
 
+echo "(17) Listen"
+
+DATA=`nc -l -p 3333 -w $TIMEOUT` | cut -d " " -f 2
+echo $DATA
+
+echo "(20) Test & Send"
+
+
+
 exit 0

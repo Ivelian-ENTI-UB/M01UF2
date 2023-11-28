@@ -77,5 +77,13 @@ then
 	exit 4
 fi
 
+echo "(18) Send"
+
+
+
+echo "(19) Listen"
+
+
+
 echo "FIN"
 exit 0
