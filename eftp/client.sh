@@ -79,7 +79,9 @@ fi
 
 echo "(18) Send"
 
-
+HASH=`cat imgs/fary1.txt | md5sum | cut -d " " -f 1` 
+sleep 1
+echo "HASH $HASH" | nc $SERVER 3333
 
 echo "(19) Listen"
 
