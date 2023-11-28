@@ -91,8 +91,6 @@ then
 	exit 4
 fi
 
-echo $DATA > inbox/$FILE_NAME
-
 sleep 1
 echo "OK_DATA" | nc $CLIENT 3333
 
