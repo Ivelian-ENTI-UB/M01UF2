@@ -79,13 +79,13 @@ fi
 
 echo "(18) Send"
 
-HASH=`cat imgs/fary1.txt | md5sum | cut -d " " -f 1` 
+FILE_MD4=`cat imgs/fary1.txt | md5sum | cut -d " " -f 1` 
 sleep 1
-echo "HASH $HASH" | nc $SERVER 3333
+echo "FILE_MD5 $FILE_MD5" | nc $SERVER 3333
 
 echo "(19) Listen"
 
-
+DATA= `nc -l -p 3333 -w $TIMEOUT`
 
 echo "FIN"
 exit 0
