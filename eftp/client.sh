@@ -29,7 +29,7 @@ echo $DATA
 
 echo "(5) Test & Send"
 
-if [ "$DATA" != "OK_HEADER" ] #paso 5
+if [ "$DATA" != "OK_HEADER" ] 
 then
 	echo "ERROR 1: BAD HEADER"
 	exit 1
@@ -41,7 +41,7 @@ echo "BOOOM" | nc $SERVER $PORT
 
 echo "(6) Listen"
 
-DATA=`nc -l -p $PORT -w $TIMEOUT` #paso 6 escuchar
+DATA=`nc -l -p $PORT -w $TIMEOUT`
 
 echo $DATA
 
@@ -79,7 +79,6 @@ echo "(10b) Send FILE_NAME"
 
 sleep 1
 
-# FILE_NAME="fary1.txt"
 FILE_MD5=`echo $FILE_NAME | md5sum | cut -d " " -f 1`
 echo "FILE_NAME $FILE_NAME $FILE_MD5" | nc $SERVER $PORT
 
