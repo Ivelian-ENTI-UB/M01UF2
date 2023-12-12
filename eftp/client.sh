@@ -3,6 +3,14 @@
 PORT=3333
 SERVER="localhost"
 
+if [ $# -eq 0 ]
+then
+	SERVER="localhost"
+elfif [ $# -ge 1 ]	
+then
+	SERVER=$1
+fi	
+
 IP=`ip address | grep inet | grep -i enp0s3 | cut -d " " -f 6 | cut -d "/" -f 1`
 
 TIMEOUT=1
