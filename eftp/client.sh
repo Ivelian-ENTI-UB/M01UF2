@@ -6,7 +6,7 @@ SERVER="localhost"
 if [ $# -eq 0 ]
 then
 	SERVER="localhost"
-elfif [ $# -ge 1 ]	
+elif [ $# -ge 1 ]	
 then
 	SERVER=$1
 fi	
