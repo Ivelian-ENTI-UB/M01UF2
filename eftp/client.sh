@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo iptables -A OUTPUT -p tcp --dport 3333 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -p tcp --sport 3333 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
 PORT=3333
 SERVER="localhost"
 
